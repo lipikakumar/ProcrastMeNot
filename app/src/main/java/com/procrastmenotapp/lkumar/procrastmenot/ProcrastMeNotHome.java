@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class ProcrastMeNotHome extends Activity {
 
     private Button startButton;
-    private Button pauseButton;
+    private Button resetButton;
 
     private TextView timerValue;
 
@@ -26,6 +26,7 @@ public class ProcrastMeNotHome extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_procrast_me_not_home);
 
@@ -42,14 +43,13 @@ public class ProcrastMeNotHome extends Activity {
             }
         });
 
-        pauseButton = (Button) findViewById(R.id.pauseButton);
-
-        pauseButton.setOnClickListener(new View.OnClickListener() {
+        resetButton = (Button) findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
 
-                timeSwapBuff += timeInMilliseconds;
-                customHandler.removeCallbacks(updateTimerThread);
+                customHandler.removeCallbacksAndMessages(updateTimerThread);
+                customHandler.postDelayed(resetThread, 0);
 
             }
         });
@@ -72,6 +72,24 @@ public class ProcrastMeNotHome extends Activity {
                     + String.format("%02d", secs) + ":"
                     + String.format("%03d", milliseconds));
             customHandler.postDelayed(this, 0);
+        }
+
+    };
+
+    private Runnable resetThread = new Runnable() {
+
+        public void run() {
+
+            int secs = (int) 0;
+            int mins = (int) 0;
+            int milliseconds = (int) 0;
+
+            timerValue.setText("" + mins + ":"
+                    + String.format("%02d", secs) + ":"
+                    + String.format("%03d", milliseconds));
+
+            customHandler.postDelayed(this, 0);
+
         }
 
     };

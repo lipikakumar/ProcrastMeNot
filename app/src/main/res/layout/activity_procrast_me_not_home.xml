@@ -8,7 +8,7 @@
         android:id="@+id/timerValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/pauseButton"
+        android:layout_above="@+id/resetButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="37dp"
         android:textSize="40sp"
@@ -25,13 +25,13 @@
         android:text="@string/startButtonLabel" />
 
     <Button
-        android:id="@+id/pauseButton"
+        android:id="@+id/resetButton"
         android:layout_width="90dp"
         android:layout_height="45dp"
         android:layout_alignBaseline="@+id/startButton"
         android:layout_alignBottom="@+id/startButton"
         android:layout_alignParentRight="true"
         android:layout_marginRight="38dp"
-        android:text="@string/pauseButtonLabel" />
+        android:text="@string/resetButtonLabel" />
 
 </RelativeLayout>
