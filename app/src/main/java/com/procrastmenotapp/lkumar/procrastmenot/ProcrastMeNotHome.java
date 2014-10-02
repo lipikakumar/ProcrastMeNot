@@ -1,13 +1,18 @@
 package com.procrastmenotapp.lkumar.procrastmenot;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+import android.util.Log;
 
 public class ProcrastMeNotHome extends Activity {
 
@@ -31,7 +36,6 @@ public class ProcrastMeNotHome extends Activity {
         setContentView(R.layout.activity_procrast_me_not_home);
 
         timerValue = (TextView) findViewById(R.id.timerValue);
-
         startButton = (Button) findViewById(R.id.startButton);
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +57,13 @@ public class ProcrastMeNotHome extends Activity {
 
             }
         });
+
+        // Create intent to discover screen on and off action
+        // http://thinkandroid.wordpress.com/2010/01/24/handling-screen-off-and-screen-on-intents/#respond
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        BroadcastReceiver mReceiver = new ScreenReceiver();
+        registerReceiver(mReceiver, filter);
 
     }
 
@@ -80,8 +91,8 @@ public class ProcrastMeNotHome extends Activity {
 
         public void run() {
 
-            int secs = (int) 0;
-            int mins = (int) 0;
+            int secs = 0;
+            int mins = 0;
             int milliseconds = (int) 0;
 
             timerValue.setText("" + mins + ":"
