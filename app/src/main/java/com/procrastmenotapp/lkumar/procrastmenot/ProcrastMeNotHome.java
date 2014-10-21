@@ -9,12 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
+import android.content.Context;
 import android.widget.Toast;
 import android.util.Log;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 public class ProcrastMeNotHome extends Activity {
+
+    private static Context context;
 
     private Button startButton;
     private Button resetButton;
@@ -64,6 +69,13 @@ public class ProcrastMeNotHome extends Activity {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         BroadcastReceiver mReceiver = new ScreenReceiver();
         registerReceiver(mReceiver, filter);
+
+        // Create a test dialog alert
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("This is a test message")
+                .setTitle("This is a test title")
+                .setCancelable(true)
+                .setNeutralButton(android.R.string.cancel, new DialogInterface.OnClickListener() { public void onClick(DialogInterface dialog, int whichButton){}}).show();
 
     }
 
