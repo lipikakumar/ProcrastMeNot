@@ -10,12 +10,9 @@ import android.widget.Toast;
  */
 public class AlarmReceiver extends BroadcastReceiver {
 
-    public static boolean wasScreenOn;
-
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        Toast.makeText(context, "Rise and Shine starshine! The world says hello!", Toast.LENGTH_LONG).show();
+       Toast.makeText(context, "Procrastmenot my dear!", Toast.LENGTH_LONG).show();
     }
 
 }
